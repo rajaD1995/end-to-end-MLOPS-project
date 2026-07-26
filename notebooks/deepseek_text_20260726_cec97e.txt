@@ -1,0 +1,27 @@
+┌─────────────────────────────────────────────────────────────────┐
+│                    PROJECT REPOSITORY (Git)                    │
+│  (Stored on GitHub/GitLab)                                     │
+├─────────────────────────────────────────────────────────────────┤
+│  dvc.yaml          ← Pipeline definition                       │
+│  dvc.lock          ← MD5 hashes (links to S3) ✅              │
+│  params.yaml       ← Hyperparameters                           │
+│  src/              ← Python scripts                            │
+│  .dvc/config       ← Remote configuration                     │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ (MD5 Hashes link to S3)
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│           S3 BUCKET (or local_s3)                              │
+│  (Stores ACTUAL DATA & MODELS)                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  cache/                                                        │
+│  ├── a1b2c3.../train.csv       ← Actual data files            │
+│  ├── f6e5d4.../test.csv                                      │
+│  ├── 1a2b3c.../model.pkl       ← Actual model                │
+│  ├── 4d5e6f.../vectorizer.pkl                                │
+│  └── ...                                                     │
+│                                                                 │
+│  🔑 Stored by MD5 hash, not by filename!                      │
+│  ✅ Files are deduplicated automatically!                     │
+└─────────────────────────────────────────────────────────────────┘

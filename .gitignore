@@ -218,4 +218,8 @@ __marimo__/
 .streamlit/secrets.toml
 
 cred.txt
-notebooks/
+## I have removed the credentias like MLflow link  & repo_owner
+# notebooks/
+local_s3/
+data/
+models/
