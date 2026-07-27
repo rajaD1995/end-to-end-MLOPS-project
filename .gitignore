@@ -221,7 +221,7 @@ cred.txt
 ## I have removed the credentias like MLflow link  & repo_owner
 # notebooks/
 local_s3/
-data/
+/data/
 # CI automatically builds its own model no need to track this
 models/  
 .env
