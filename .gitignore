@@ -222,4 +222,6 @@ cred.txt
 # notebooks/
 local_s3/
 data/
-models/
+# CI automatically builds its own model no need to track this
+models/  
+.env
