@@ -175,5 +175,6 @@ zc.lockfile==3.0.post1
 zipp==3.19.2
 prometheus_client
 setuptools==69.5.1  # CRITICAL: Must be 69.5.1 for MLflow compatibility
+python-dotenv
 
 -e .
