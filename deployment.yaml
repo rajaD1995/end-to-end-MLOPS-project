@@ -50,5 +50,5 @@ spec:
     - name: http
       protocol: TCP
       port: 5000
-      # the port you used in app.py
-      targetPort: 5001
+      # the port has nothing to do with your Mac/laptop's local port
+      targetPort: 5000
