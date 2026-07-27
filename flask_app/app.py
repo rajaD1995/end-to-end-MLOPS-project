@@ -72,25 +72,26 @@ def normalize_text(text):
 
 # 1. Below code block is for local use
 # -------------------------------------------------------------------------------------
-mlflow.set_tracking_uri(os.getenv('MLFLOW_LINK'))
-dagshub.init(repo_owner=os.getenv('repo_owner'), repo_name=os.getenv('repo_name'), mlflow=True)
+# mlflow.set_tracking_uri(os.getenv('MLFLOW_LINK'))
+# dagshub.init(repo_owner=os.getenv('repo_owner'), repo_name=os.getenv('repo_name'), mlflow=True)
 # -------------------------------------------------------------------------------------
 
 # 2. Below code block is for production use
 # -------------------------------------------------------------------------------------
-# # Set up DagsHub credentials for MLflow tracking
-# dagshub_token = os.getenv("CAPSTONE_TEST")
-# if not dagshub_token:
-#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+# Set up DagsHub credentials for MLflow tracking
+# it access CAPSTONE_TEST token from github setting's Secrets & variables not from .env
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
 
-# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-# dagshub_url = "https://dagshub.com"
-# repo_owner = "vikashdas770"
-# repo_name = "YT-Capstone-Project"
-# # Set up MLflow tracking URI
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+dagshub_url = "https://dagshub.com"
+repo_owner = "rajaD1995"
+repo_name = "end-to-end-MLOPS-project"
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # -------------------------------------------------------------------------------------
 
 

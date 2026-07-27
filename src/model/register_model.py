@@ -6,7 +6,8 @@ import logging
 from src.logger import logging
 import os
 import dagshub
-
+from dotenv import load_dotenv
+load_dotenv()
 import warnings
 warnings.simplefilter("ignore", UserWarning)
 warnings.filterwarnings("ignore")
@@ -14,25 +15,26 @@ warnings.filterwarnings("ignore")
 # 1. Below code block is for production use
 # -------------------------------------------------------------------------------------
 ## Set up DagsHub credentials for MLflow tracking
-# dagshub_token = os.getenv("CAPSTONE_TEST")
-# if not dagshub_token:
-#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+# it access CAPSTONE_TEST token from github setting's Secrets & variables not from .env
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
 
-# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-# dagshub_url = "https://dagshub.com"
-# repo_owner = "vikashdas770"
-# repo_name = "YT-Capstone-Project"
-# # Set up MLflow tracking URI
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+dagshub_url = "https://dagshub.com"
+repo_owner = "rajaD1995"
+repo_name = "end-to-end-MLOPS-project"
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # -------------------------------------------------------------------------------------
 
 
 # 2. Below code block is for local use
 # -------------------------------------------------------------------------------------
-mlflow.set_tracking_uri('https://dagshub.com/rajaD1995/end-to-end-MLOPS-project.mlflow')
-dagshub.init(repo_owner='rajaD1995', repo_name='end-to-end-MLOPS-project', mlflow=True)
+# mlflow.set_tracking_uri(os.getenv("MLFLOW_LINK"))
+# dagshub.init(repo_owner=os.getenv('repo_owner'), repo_name=os.getenv('repo_name'), mlflow=True)
 # -------------------------------------------------------------------------------------
 
 
