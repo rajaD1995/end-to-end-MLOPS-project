@@ -23,14 +23,15 @@ import scipy.sparse
 import warnings
 warnings.simplefilter("ignore", UserWarning)
 warnings.filterwarnings("ignore")
-
+from dotenv import load_dotenv
+load_dotenv()
 # ========================== CONFIGURATION ==========================
 CONFIG = {
     "data_path": "notebooks/data.csv",
     "test_size": 0.2,
-    "mlflow_tracking_uri": "https://dagshub.com/....mlflow",
-    "dagshub_repo_owner": "<name>",
-    "dagshub_repo_name": "end-to-end-MLOPS-project",
+    "mlflow_tracking_uri": os.getenv("MLFLOW_LINK"),
+    "dagshub_repo_owner": os.getenv('repo_owner'),
+    "dagshub_repo_name": os.getenv('repo_name'),
     "experiment_name": "Bow vs TfIdf"
 }
 

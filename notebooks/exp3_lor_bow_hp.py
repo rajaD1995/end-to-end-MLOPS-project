@@ -16,13 +16,14 @@ from nltk.stem import WordNetLemmatizer
 import warnings
 warnings.simplefilter("ignore", UserWarning)
 warnings.filterwarnings("ignore")
-
+from dotenv import load_dotenv
+load_dotenv()
 # Suppress MLflow artifact download warnings
 # os.environ["MLFLOW_DISABLE_ARTIFACTS_DOWNLOAD"] = "1"
 
 # Set MLflow Tracking URI & DAGsHub integration
-MLFLOW_TRACKING_URI = "https://dagshub.com/....mlflow"
-dagshub.init(repo_owner="<name>", repo_name="end-to-end-MLOPS-project", mlflow=True)
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_LINK")
+dagshub.init(repo_owner=os.getenv('repo_owner'), repo_name=os.getenv('repo_name'), mlflow=True)
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 mlflow.set_experiment("LoR Hyperparameter Tuning")
 
